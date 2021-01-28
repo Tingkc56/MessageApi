@@ -10,10 +10,11 @@ $dotenv->load();//那我就在local里面找env，但由于我把.env屏蔽了�
 }
 //sinon je ne fais rien 如果我不是用local的机器，那我就什么都不做，执行下一步
 
-
+if($_SERVER['HTTP_REFERER'] =="https://slackmessage.netlify.app"){
 $array = array("token" => $_ENV['token']);//array从env里面取token
-
 $data =json_encode($array); //把array变成json的格式
+}else{
+    http_response_code(401);
+}
 
-
-//echo($data);//看看有没有取到token
+echo($data);//看看有没有取到token
